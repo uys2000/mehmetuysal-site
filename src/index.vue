@@ -19,5 +19,9 @@ body {
   background-color: #000000;
   color: #ffffff;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
 </style>
 

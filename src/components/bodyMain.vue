@@ -105,7 +105,7 @@ export default {
       lang: 0,
       langs: ["TR", "EN"],
       page: "Main Page",
-      menus: ["Who I Am?", "Pojects", "Contact"],
+      menus: ["Who I Am?", "Projects", "Contact"],
       bottomComeFromUp: true,
       bottomComeFromIn: false,
       bottomOutToUp: false,
@@ -277,5 +277,6 @@ export default {
   padding: 20vh 20vw;
   width: 100%;
 }
+
 
 </style>
