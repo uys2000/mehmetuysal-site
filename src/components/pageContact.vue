@@ -12,7 +12,7 @@
             <q-separator dark inset />
 
             <q-card-section>
-              <address v-html="label['cont' + langValue]" />
+              <address class="ql-editor" v-html="label['cont' + langValue]" />
               <p />
             </q-card-section>
             <q-separator dark inset />

@@ -5,7 +5,7 @@
         :src="require('@/assets/me.jpg')"
         :img-style="{ borderRadius: '10000px' }"
       />
-      <p v-html="label['cont' + langValue]"></p>
+      <div class="ql-editor a" v-html="label['cont' + langValue]"></div>
     </q-scroll-area>
   </div>
 </template>
@@ -22,8 +22,9 @@ export default {
   width: 100%;
   height: 75vh;
 }
-p {
-  border-radius: 100px;
+.a {
+  border-radius: 100px; 
+  overflow-y: unset;
   background-color: #222222;
   margin-top: 100px;
   width: 100%;

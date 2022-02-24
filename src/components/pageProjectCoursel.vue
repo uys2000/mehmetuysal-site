@@ -15,9 +15,9 @@
       :name="`${i}`"
       v-for="i in Array(items.length).keys()"
       :key="i"
-      class="column no-wrap flex-center"
+      class=""
     >
-      <div class="q-mt-md text-center" v-html="getHTML"></div>
+      <div class="ql-editor"  style="width:100%" v-html="getHTML"></div>
     </q-carousel-slide>
   </q-carousel>
 </template>
