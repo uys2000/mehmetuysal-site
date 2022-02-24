@@ -1,14 +1,7 @@
 <template>
   <div class="">
     <!-- Lang Part-->
-    <div class="fixed-top-right animate__animated animate__rotateInUpRight">
-      <q-btn
-        flat
-        class="bg-primary text-accent"
-        :label="langs[lang]"
-        @click="changeLang"
-      />
-    </div>
+    <button-lang :langValue="langValue" @changeLang="changeLang" />
 
     <!-- Left Part-->
     <div
@@ -23,7 +16,7 @@
       <q-btn
         flat
         class="bg-primary text-accent rotateLeft"
-        :label="menus[0]"
+        :label="menus[langValue][0]"
         @click="changePage(0)"
       />
     </div>
@@ -41,7 +34,7 @@
       <q-btn
         flat
         class="bg-primary text-accent"
-        :label="menus[1]"
+        :label="menus[langValue][1]"
         @click="changePage(1)"
       />
     </div>
@@ -59,7 +52,7 @@
       <q-btn
         flat
         class="bg-primary text-accent rotateRight"
-        :label="menus[2]"
+        :label="menus[langValue][2]"
         @click="changePage(2)"
       />
     </div>
@@ -80,21 +73,36 @@
         animate__bounceOutDown: pageOutToIn,
       }"
     >
-      <page-main v-if="page == 'Main Page'" />
-      <page-who v-if="page == 'Who I Am?'" />
-      <page-contact v-if="page == 'Contact'" />
-      <page-project v-if="page == 'Pojects'" />
+      <page-main v-if="page['EN'] == 'Main Page'" />
+      <page-who
+        v-if="page['EN'] == 'Who I Am?'"
+        :langValue="langValue"
+        :label="pageWhoValue"
+      />
+      <page-contact
+        v-if="page['EN'] == 'Contact'"
+        :langValue="langValue"
+        :label="pageContactValue"
+      />
+      <page-project v-if="page['EN'] == 'Projects'" :langValue="langValue" />
     </div>
   </div>
 </template>
 
 <script>
+import buttonLang from "@/components/bodyMainLangButton.vue";
 import pageMain from "@/components/pageMain.vue";
 import pageWho from "@/components/pageWho.vue";
 import pageContact from "@/components/pageContact.vue";
 import pageProject from "@/components/pageProject.vue";
+import {
+  dataBaseFunctionRead,
+  dataBaseFunctionReadAll,
+} from "@/service/service-for-user.js";
+
 export default {
   components: {
+    buttonLang,
     pageMain,
     pageWho,
     pageContact,
@@ -102,10 +110,12 @@ export default {
   },
   data() {
     return {
-      lang: 0,
-      langs: ["TR", "EN"],
-      page: "Main Page",
-      menus: ["Who I Am?", "Projects", "Contact"],
+      langValue: "EN",
+      page: { EN: "Main Page", TR: "Ana Sayfa" },
+      menus: {
+        EN: ["Who I Am?", "Projects", "Contact"],
+        TR: ["Ben Kimim?", "Projeler", "İletişim"],
+      },
       bottomComeFromUp: true,
       bottomComeFromIn: false,
       bottomOutToUp: false,
@@ -130,16 +140,13 @@ export default {
       pageComeFromIn: false,
       pageOutToUp: false,
       pageOutToIn: false,
+
+      pageWhoValue: null,
+      pageContactValue: null,
+      pageProjectValue: null,
     };
   },
   methods: {
-    changeLang: function () {
-      if (this.lang == this.langs.length - 1) {
-        this.lang = 0;
-      } else {
-        this.lang += 1;
-      }
-    },
     changePage: function (value) {
       if (value == 0) {
         this.toRight();
@@ -147,6 +154,14 @@ export default {
         this.toLeft();
       } else {
         this.toBottom();
+      }
+    },
+    changeLang: function () {
+      const langValues = ["TR", "EN"];
+      if (this.langValue == langValues[0]) {
+        this.langValue = langValues[1];
+      } else {
+        this.langValue = langValues[0];
       }
     },
     toRight: function () {
@@ -158,10 +173,15 @@ export default {
         this.rightOutToRight = false;
         this.pageOutToRight = false;
 
-        const c = this.menus[0];
-        this.menus[0] = this.menus[2];
-        this.menus[2] = this.page;
-        this.page = c;
+        const c = this.menus["EN"][0];
+        this.menus["EN"][0] = this.menus["EN"][2];
+        this.menus["EN"][2] = this.page["EN"];
+        this.page["EN"] = c;
+
+        const b = this.menus["TR"][0];
+        this.menus["TR"][0] = this.menus["TR"][2];
+        this.menus["TR"][2] = this.page["TR"];
+        this.page["TR"] = b;
 
         this.leftComeFromLeft = true;
         this.rightComeFromLeft = true;
@@ -183,10 +203,15 @@ export default {
         this.rightOutToLeft = false;
         this.pageOutToLeft = false;
 
-        const c = this.menus[2];
-        this.menus[2] = this.menus[0];
-        this.menus[0] = this.page;
-        this.page = c;
+        const c = this.menus["EN"][2];
+        this.menus["EN"][2] = this.menus["EN"][0];
+        this.menus["EN"][0] = this.page["EN"];
+        this.page["EN"] = c;
+
+        const b = this.menus["TR"][2];
+        this.menus["TR"][2] = this.menus["TR"][0];
+        this.menus["TR"][0] = this.page["TR"];
+        this.page["TR"] = b;
 
         this.leftComeFromRight = true;
         this.rightComeFromRight = true;
@@ -206,9 +231,13 @@ export default {
         this.bottomOutToUp = false;
         this.pageOutToUp = false;
 
-        const c = this.menus[1];
-        this.menus[1] = this.page;
-        this.page = c;
+        const c = this.menus["EN"][1];
+        this.menus["EN"][1] = this.page["EN"];
+        this.page["EN"] = c;
+
+        const b = this.menus["TR"][1];
+        this.menus["TR"][1] = this.page["TR"];
+        this.page["TR"] = b;
 
         this.bottomComeFromUp = true;
         this.pageComeFromUp = true;
@@ -245,8 +274,33 @@ export default {
       this.pageOutToUp = false;
       this.pageOutToIn = false;
     },
+    getMainPages: function () {
+      dataBaseFunctionReadAll("onePage").then((res) => {
+        this.pageContactValue = res.docs[0].data();
+        this.pageWhoValue = res.docs[1].data();
+      });
+    },
+    getProjects: function () {
+      dataBaseFunctionRead("projects", "all").then((res) => {
+        this.projectList = res.data("list");
+      });
+    },
+    getProjectsFunction: function () {
+      return dataBaseFunctionRead("projects", "all");
+    },
+  },
+  provide() {
+    return {
+      pageWhoValue: this.pageWhoValue,
+      pageContactValue: this.pageContactValue,
+      pageProjectValue: this.pageProjectValue,
+      getProjectsFunction: this.getProjectsFunction,
+    };
   },
   mounted() {
+    this.getMainPages();
+    this.getProjects();
+
     setTimeout(() => {
       this.toDefault();
     }, 500);
@@ -277,6 +331,4 @@ export default {
   padding: 20vh 20vw;
   width: 100%;
 }
-
-
 </style>

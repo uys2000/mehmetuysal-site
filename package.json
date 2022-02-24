@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@vueup/vue-quill": "^1.0.0-beta.8",
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
+    "firebase": "^9.4.1",
+    "googleapis": "^39.2.0",
     "quasar": "^2.0.0",
     "vue": "^3.0.0",
     "vue-use-gesture": "^1.0.1",

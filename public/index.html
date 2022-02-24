@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="">
-  <head><link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-  />
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+    />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    
+
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       * {
@@ -16,7 +17,7 @@
         padding: 0px;
       }
       html,
-      body{
+      body {
         overflow: hidden;
       }
 
@@ -27,6 +28,21 @@
         height: 100vh;
       }
     </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1MGV3VPNC7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-1MGV3VPNC7");
+    </script>
   </head>
   <body>
     <noscript>
