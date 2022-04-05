@@ -60,6 +60,7 @@
     <!-- PAge Part-->
     <div
       id="page"
+      :style="page['EN'] != 'Main Page' ? 'margin-top: -5vh;' : ''"
       class="animate__animated"
       :class="{
         animate__bounceInLeft: pageComeFromLeft,
@@ -163,6 +164,7 @@ export default {
       } else {
         this.langValue = langValues[0];
       }
+      localStorage.langValue = this.langValue;
     },
     toRight: function () {
       this.leftOutToRight = true;
@@ -301,6 +303,11 @@ export default {
     this.getMainPages();
     this.getProjects();
 
+    if (localStorage.langValue) {
+      console.log(localStorage.langValue);
+      this.langValue = localStorage.langValue;
+    }
+
     setTimeout(() => {
       this.toDefault();
     }, 500);
@@ -330,5 +337,10 @@ export default {
 #page {
   padding: 20vh 20vw;
   width: 100%;
+}
+</style>
+<style>
+.ql-editor img {
+  max-width: 100%;
 }
 </style>

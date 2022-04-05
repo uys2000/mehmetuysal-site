@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-scroll-area class="row wrap justify-center items-start content-start">
+    <q-scroll-area class="row justify-between items-center content-center">
       <div class="center row">
         <div class="bg-secondary">
           <q-card dark bordered class="">
@@ -58,9 +58,8 @@ p {
   flex-wrap: wrap;
 }
 .center > div {
-  width: 40%;
-  min-width: 300px;
-  margin: 5px auto;
+  width: 50vw;
+  margin: 3vh auto;
   height: auto;
   padding: 5px;
   border-radius: 5px;

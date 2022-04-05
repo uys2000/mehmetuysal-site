@@ -15,9 +15,9 @@
       :name="`${i}`"
       v-for="i in Array(items.length).keys()"
       :key="i"
-      class=""
+      class="ql-editor"
+      v-html="getHTML"
     >
-      <div class="ql-editor"  style="width:100%" v-html="getHTML"></div>
     </q-carousel-slide>
   </q-carousel>
 </template>
@@ -37,8 +37,9 @@ export default {
   props: ["langVal", "items"],
   methods: {
     getText: function (index) {
-      if (this.checker) {
-        this.checker = false;
+      if (this.checker != this.slide) {
+        this.object = {};
+        this.checker = this.slide;
         dataBaseFunctionRead("projects", this.items[index]).then((res) => {
           this.object = res.data();
         });

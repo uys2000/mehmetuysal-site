@@ -75,4 +75,10 @@ export default {
   width: 100%;
   height: 75vh;
 }
+
+@media (max-width: 400px) {
+  .q-tab-panel {
+    padding: 2px;
+  }
+}
 </style>

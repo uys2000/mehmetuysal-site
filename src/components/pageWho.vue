@@ -27,7 +27,7 @@ export default {
   overflow-y: unset;
   background-color: #222222;
   margin-top: 100px;
-  width: 100%;
+  width: 60vw;
   padding: 10vh 5vw;
 }
 .q-img {

@@ -94,7 +94,7 @@ h4 {
 .page {
   position: absolute;
   top: 50vh;
-  right: 50%;  
+  right: 50%;
   z-index: -1;
   -webkit-transform: scale3d(1, 1, 1);
   transform: scale3d(1, 1, 1);
