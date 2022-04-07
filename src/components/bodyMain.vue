@@ -2,6 +2,7 @@
   <div class="">
     <!-- Lang Part-->
     <button-lang :langValue="langValue" @changeLang="changeLang" />
+    <q-btn class="fixed-top-right q-mr-xl" label="youtubeDL" />
 
     <!-- Left Part-->
     <div
