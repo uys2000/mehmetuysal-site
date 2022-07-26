@@ -1,26 +1,16 @@
-# muys
+This web site files is not last release.
+You should desgin project page for yourself
 
-## Project setup
+
+to check
+
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
+or 
 ```
-npm run build
+npm install
+npm run buld
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# mehmetuysal-site
-# mehmetuysal-site
